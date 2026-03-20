@@ -5,6 +5,8 @@ import com.redis_app.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
@@ -33,6 +35,13 @@ public class ProductController {
         service.deleteProduct(id);
         return "Deleted Successfully";
     }
+
+    @GetMapping
+    public List<Product> getAll() {
+        return service.getAllProducts();
+    }
+
+
 //    @GetMapping("/{id}")
 //    public Product getProductById(@PathVariable Long id){
 //        return productService.getProductById(id);

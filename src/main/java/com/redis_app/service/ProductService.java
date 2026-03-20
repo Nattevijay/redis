@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -17,6 +18,11 @@ public class ProductService {
     private final RedisTemplate<String, Object> redisTemplate;
 
     private static final String KEY = "product:";
+
+
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
 
     // 🔥 GET (Cache Aside Pattern)
     public Product getProductById(Long id) {

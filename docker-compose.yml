@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_ram
+    restart: always
+    environment:
+      MYSQL_DATABASE: redis_app
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-vijay:/var/lib/mysql
+
+  redis:
+    image: redis:7
+    container_name: redis_ram
+    restart: always
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    container_name: redis_app
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: mysql
+      DB_NAME: redis_app
+      DB_USER: root
+      DB_PASSWORD: password
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+
+volumes:
+  mysql-vijay:
