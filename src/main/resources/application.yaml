@@ -2,7 +2,7 @@ spring:
   application:
     name: redis_app
   datasource:
-    url: jdbc:mysql://localhost:3306/redis_app?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/redis_app?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: 21082001@Vijay
   jpa:
